@@ -21,4 +21,8 @@ public class Memo {
         this.title = title;
         this.content = content;
     }
+    public void updateMemo(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

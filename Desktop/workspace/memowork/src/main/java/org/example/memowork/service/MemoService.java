@@ -25,7 +25,7 @@ public class MemoService {
     }
     //단건 조회
     @Transactional(readOnly = true)
-    public MemoResponse getMember(long id) {
+    public MemoResponse getMemo(long id) {
         Memo memo = memorepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("그런 메모는 없다니까?"));
         return new MemoResponse(
@@ -46,6 +46,16 @@ public class MemoService {
             memoResponseList.add(memoResponse);
         }
         return memoResponseList;
+    }
+
+    //단건 수정
+    @Transactional
+    public MemoResponse updateMemo(Long id, MemoRequestDto memberRequest) {
+        Memo member = memorepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("그런 메모 없어요잉"));
+        member.updateMemo(memberRequest.getTitle(), memberRequest.getContent());
+
+        return new MemoResponse(member.getId(), member.getTitle(), member.getContent());
     }
 
 }

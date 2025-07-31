@@ -20,17 +20,26 @@ public class MemoController {
         return memoService.save(memoRequestDto);
     }
     //단건 조회
-    @GetMapping("/members/{memberId}")
-    public MemoResponse getMember(
-            @PathVariable Long memberId
+    @GetMapping("/memo/{memoId}")
+    public MemoResponse getMemo(
+            @PathVariable Long memoId
     ) {
-        return memoService.getMember(memberId);
+        return memoService.getMemo(memoId);
     }
 
     //전체 조회
     @GetMapping("/memos")
     public List<MemoResponse> getMemos() {
         return memoService.getMemos();
+    }
+
+    //단건 수정
+    @PutMapping("/memo/{memoId}")
+    public MemoResponse updateMemo(
+            @PathVariable Long memoId,
+            @RequestBody MemoRequestDto memoRequestDto
+    ){
+        return memoService.updateMemo(memoId, memoRequestDto);
     }
 
 }
