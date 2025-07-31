@@ -42,4 +42,11 @@ public class MemoController {
         return memoService.updateMemo(memoId, memoRequestDto);
     }
 
+    //단건 삭제
+    @DeleteMapping(("/memo/{memoId}"))
+    public void deleteMemo(
+            @PathVariable Long memoId
+    ){
+        memoService.deleteMemo(memoId);
+    }
 }
